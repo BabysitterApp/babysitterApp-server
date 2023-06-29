@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 const babysitterSchema = new Schema({
   babysitterName: String,
   description: String,
-  availability: Boolean,
+  timeslots: String,
   languages: {
     type: String,
     enum: ["English", "German", "Spanish", "French"],

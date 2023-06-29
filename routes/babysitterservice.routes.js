@@ -2,15 +2,15 @@ const router = require("express").Router();
 
 const mongoose = require("mongoose");
 
-const babysitterService = require("../models/BabysitterService.model");
+const BabysitterService = require("../models/BabysitterService.model");
 const Booking = require("../models/Booking.model");
 
 //  POST /api/projects  -  Creates a new babysitterService profile
-router.post("/create", (req, res, next) => {
+router.post("/babysitterServices", (req, res, next) => {
   const {
     babysitterName,
     description,
-    availability,
+    timeslots,
     languages,
     yearsOfExperience,
     provideServiceFor,
@@ -21,7 +21,7 @@ router.post("/create", (req, res, next) => {
   const newBabysitterService = {
     babysitterName: babysitterName,
     description: description,
-    availability: availability,
+    timeslots: timeslots,
     languages: languages,
     yearsOfExperience: yearsOfExperience,
     provideServiceFor: provideServiceFor,
@@ -29,20 +29,23 @@ router.post("/create", (req, res, next) => {
     supportServices: supportServices,
   };
 
-  BabysitterService.create(newBabysitterService).then((response) =>
-    res.status(201).json(response)
-  );
-  console.log(response).catch((err) => {
-    console.log("error creating a new babysitterService", err);
-    res.status(500).json({
-      message: "error creating a new babysitterService",
-      error: err,
+  BabysitterService.create(newBabysitterService)
+    .then((response) => {
+      res.status(201).json(response);
+      console.log(response);
+    })
+
+    .catch((err) => {
+      console.log("error creating a new babysitterService", err);
+      res.status(500).json({
+        message: "error creating a new babysitterService",
+        error: err,
+      });
     });
-  });
 });
 
 // GET /api/babysitterService -  Retrieves all of the babysitterService
-router.get("/babysitterService", (req, res, next) => {
+router.get("/babysitterServices", (req, res, next) => {
   babysitterService
     .find()
     .then((response) => {
@@ -58,7 +61,7 @@ router.get("/babysitterService", (req, res, next) => {
 });
 
 //  GET /api/babysitterService/:babysitterServiceId  -  Get details of a specific babysitterService by id
-router.get("/babysitterService/:babysitterServiceId", (req, res, next) => {
+router.get("/babysitterServices/:babysitterServiceId", (req, res, next) => {
   const { babysitterServiceId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(babysitterServiceId)) {
@@ -79,7 +82,7 @@ router.get("/babysitterService/:babysitterServiceId", (req, res, next) => {
 });
 
 // PUT /api/update/:babysitterServiceId  -  Updates a specific babysitter by id
-router.put("/update/:babysitterServiceId", (req, res, next) => {
+router.put("/babysitterServices/:babysitterServiceId", (req, res, next) => {
   const { babysitterServiceId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(babysitterServiceId)) {
@@ -108,7 +111,7 @@ router.put("/update/:babysitterServiceId", (req, res, next) => {
 
 // Delete a specific project by id
 router.delete("/babysitterServices/:babysitterServiceId", (req, res, next) => {
-  const { projectId } = req.params;
+  const { babysitterServiceId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(projectId)) {
     res.status(400).json({ message: "Specified id is not valid" });
