@@ -1,15 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const bookingSchema = new Schema({
-    babysitterName: String,
-    dateOfService: String,
-    durationOfService:Number,
-    pricePerHour: Number,
-    supportServices: { 
-        type:String,
-      enum: ["Pickup Services","Household Help", "Cooking & Feeding", "Bathe children", "Play & Read", "Put child to bed", "Help with homework","Activities"],
-      },
+  babysitterName: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "babysitterName" },
+  ],
+  dateOfService: Date, // Date
+  durationOfService: Number,
+  pricePerHour: Number,
+});
 
-    },)
-
-module.exports = model('Booking', bookingSchema);
+module.exports = model("Booking", bookingSchema);

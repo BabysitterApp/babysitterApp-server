@@ -10,7 +10,6 @@ router.post("/babysitterServices", (req, res, next) => {
   const {
     babysitterName,
     description,
-    timeslots,
     languages,
     yearsOfExperience,
     provideServiceFor,
@@ -21,7 +20,6 @@ router.post("/babysitterServices", (req, res, next) => {
   const newBabysitterService = {
     babysitterName: babysitterName,
     description: description,
-    timeslots: timeslots,
     languages: languages,
     yearsOfExperience: yearsOfExperience,
     provideServiceFor: provideServiceFor,
@@ -113,7 +111,7 @@ router.put("/babysitterServices/:babysitterServiceId", (req, res, next) => {
 router.delete("/babysitterServices/:babysitterServiceId", (req, res, next) => {
   const { babysitterServiceId } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(projectId)) {
+  if (!mongoose.Types.ObjectId.isValid(babysitterServiceId)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
