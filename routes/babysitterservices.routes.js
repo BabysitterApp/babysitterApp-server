@@ -2,14 +2,14 @@ const router = require("express").Router();
 
 const mongoose = require("mongoose");
 
-const BabysitterService = require("../models/BabysitterService.model");
+const BabysitterServices = require("../models/BabysitterServices.model");
 const Booking = require("../models/Booking.model");
 
-//  POST /api/projects  -  Creates a new babysitterService profile
+//  POST /api/projects  -  Creates a new babysitterServices profile
 router.post("/babysitterServices", (req, res, next) => {
   const {
     babysitterName,
-    description,
+    aboutMe,
     languages,
     yearsOfExperience,
     provideServiceFor,
@@ -19,7 +19,7 @@ router.post("/babysitterServices", (req, res, next) => {
 
   const newBabysitterService = {
     babysitterName: babysitterName,
-    description: description,
+    aboutMe: aboutMe,
     languages: languages,
     yearsOfExperience: yearsOfExperience,
     provideServiceFor: provideServiceFor,
@@ -27,24 +27,24 @@ router.post("/babysitterServices", (req, res, next) => {
     supportServices: supportServices,
   };
 
-  BabysitterService.create(newBabysitterService)
+  BabysitterServices.create(newBabysitterService)
     .then((response) => {
       res.status(201).json(response);
       console.log(response);
     })
 
     .catch((err) => {
-      console.log("error creating a new babysitterService", err);
+      console.log("error creating a new babysitterServices", err);
       res.status(500).json({
-        message: "error creating a new babysitterService",
+        message: "error creating a new babysitterServices",
         error: err,
       });
     });
 });
 
-// GET /api/babysitterService -  Retrieves all of the babysitterService
+// GET /api/babysitterServices -  Retrieves all of the babysitterServices
 router.get("/babysitterServices", (req, res, next) => {
-  babysitterService
+  babysitterServices
     .find()
     .then((response) => {
       res.json(response);
@@ -58,7 +58,7 @@ router.get("/babysitterServices", (req, res, next) => {
     });
 });
 
-//  GET /api/babysitterService/:babysitterServiceId  -  Get details of a specific babysitterService by id
+//  GET /api/babysitterServices/:babysitterServiceId  -  Get details of a specific babysitterServices by id
 router.get("/babysitterServices/:babysitterServiceId", (req, res, next) => {
   const { babysitterServiceId } = req.params;
 
@@ -67,7 +67,7 @@ router.get("/babysitterServices/:babysitterServiceId", (req, res, next) => {
     return;
   }
 
-  babysitterService
+  babysitterServices
     .findById(babysitterServiceId)
     .then((babysitter) => res.json(babysitterServiceId))
     .catch((err) => {
@@ -90,11 +90,11 @@ router.put("/babysitterServices/:babysitterServiceId", (req, res, next) => {
 
   // const newDetails = {
   //     title: req.body.title,
-  //     description: req.body.description,
+  //     aboutMe: req.body.aboutMe,
   //     tasks: req.body.tasks
   // }
 
-  BabysitterService.findByIdAndUpdate(babysitterServiceId, req.body, {
+  BabysitterServices.findByIdAndUpdate(babysitterServiceId, req.body, {
     new: true,
   })
     .then((updatedBabysitterService) => res.json(updatedBabysitterService))
@@ -116,7 +116,7 @@ router.delete("/babysitterServices/:babysitterServiceId", (req, res, next) => {
     return;
   }
 
-  BabysitterService.findByIdAndRemove(babysitterServiceId)
+  BabysitterServices.findByIdAndRemove(babysitterServiceId)
     // .then((deletedProject) => {
     //   return Task.deleteMany({ _id: { $in: deletedProject.tasks } });
     // })

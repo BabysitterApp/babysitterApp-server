@@ -2,7 +2,7 @@ const router = require("express").Router();
 // const mongoose = require("mongoose");
 
 const Booking = require("../models/Booking.model");
-const BabysitterService = require("../models/BabysitterService.model");
+const BabysitterService = require("../models/BabysitterServices.model");
 
 //  POST /api/booking  -  Creates a new booking
 router.post("/babysitterServices/booking", (req, res, next) => {

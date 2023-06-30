@@ -7,7 +7,7 @@ const babysitterSchema = new Schema({
     required: [true, "Please provide your name"],
   },
 
-  description: String,
+  aboutMe: String,
 
   languages: [
     {
