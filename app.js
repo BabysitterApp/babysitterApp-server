@@ -20,6 +20,7 @@ app.use("/api", indexRoutes);
 
 app.use("/api", require("./routes/babysitterservices.routes"));
 
+
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
