@@ -19,6 +19,7 @@ const indexRoutes = require("./routes/index.routes");
 app.use("/api", indexRoutes);
 
 app.use("/api", require("./routes/babysitterservices.routes"));
+app.use("/api", require("./routes/booking.routes"));
 
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
