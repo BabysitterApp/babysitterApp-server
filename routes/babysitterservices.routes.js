@@ -44,9 +44,6 @@ router.post("/babysitterServices", (req, res, next) => {
 
 // GET /api/babysitterServices -  Retrieves all of the babysitterServices
 router.get("/babysitterServices", (req, res, next) => {
-  console.log("..............");
-  console.log("inside.... GET /api/babysitterServices");
-  console.log("..............");
   BabysitterServices
     .find()
     .then((response) => {
