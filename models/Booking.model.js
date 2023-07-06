@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const bookingSchema = new Schema({
-  babysitterName: [
+  babysitterName:
     { type: mongoose.Schema.Types.ObjectId, ref: "babysitterName" },
-  ],
-  dateOfService: Date, // Date
-  durationOfService: Number,
+  dateOfServices: Date, // Date
+  durationOfServices: Number,
   pricePerHour: Number,
 });
 

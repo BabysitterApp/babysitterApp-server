@@ -6,20 +6,17 @@ const BabysitterService = require("../models/BabysitterServices.model");
 
 //  POST /api/booking  -  Creates a new booking
 router.post("/babysitterServices/booking", (req, res, next) => {
-  const { babysitterName, dateOfService, durationOfService, pricePerHour } =
+  const { babysitterServicesId, dateOfServices, durationOfServices, pricePerHour } =
     req.body;
-
+console.log(req.body);
   const newBooking = {
-    babysitterName: babysitterName,
-    dateOfService: dateOfService,
-    durationOfService: durationOfService,
+    babysitterName: babysitterServicesId,
+        dateOfServices: dateOfServices,
+    durationOfServices: durationOfServices,
     pricePerHour: pricePerHour,
   };
 
   Booking.create(newBooking)
-    .then((bookingFromDB) => {
-      return Booking.findByIdAndUpdate(bookingId);
-    })
     .then((response) => res.status(201).json(response))
     .catch((err) => {
       console.log("error creating a new booking", err);
