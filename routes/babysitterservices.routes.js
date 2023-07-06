@@ -67,7 +67,7 @@ router.get("/babysitterServices/:babysitterServiceId", (req, res, next) => {
   }
 
   BabysitterServices.findById(babysitterServiceId)
-    .then((babysitter) => res.json(babysitterServiceId))
+    .then((babysitter) => res.json(babysitter))
     .catch((err) => {
       console.log("error getting details of a babysitterService", err);
       res.status(500).json({
