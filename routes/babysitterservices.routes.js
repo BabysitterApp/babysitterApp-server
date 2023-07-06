@@ -6,7 +6,7 @@ const BabysitterServices = require("../models/BabysitterServices.model");
 const Booking = require("../models/Booking.model");
 
 //  POST /api/projects  -  Creates a new babysitterServices profile
-router.post("/babysitterServices", (req, res, next) => {
+router.post("/babysitterServices/add", (req, res, next) => {
   const {
     babysitterName,
     aboutMe,
@@ -16,7 +16,7 @@ router.post("/babysitterServices", (req, res, next) => {
     pricePerHour,
     supportServices,
   } = req.body;
-
+  console.log(req.body);
   const newBabysitterService = {
     babysitterName: babysitterName,
     aboutMe: aboutMe,
