@@ -44,9 +44,7 @@ router.post("/babysitterServices", (req, res, next) => {
 
 // GET /api/babysitterServices -  Retrieves all of the babysitterServices
 router.get("/babysitterServices", (req, res, next) => {
-
-  BabysitterServices
-    .find()
+  BabysitterServices.find()
     .then((response) => {
       res.json(response);
     })
@@ -68,8 +66,7 @@ router.get("/babysitterServices/:babysitterServiceId", (req, res, next) => {
     return;
   }
 
-  BabysitterServices
-    .findById(babysitterServiceId)
+  BabysitterServices.findById(babysitterServiceId)
     .then((babysitter) => res.json(babysitter))
     .catch((err) => {
       console.log("error getting details of a babysitterService", err);
