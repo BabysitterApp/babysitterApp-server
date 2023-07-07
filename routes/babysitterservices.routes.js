@@ -20,11 +20,11 @@ router.post("/babysitterServices/add", (req, res, next) => {
   const newBabysitterService = {
     babysitterName: babysitterName,
     aboutMe: aboutMe,
-    languages: languages,
+    // languages: languages,
     yearsOfExperience: yearsOfExperience,
-    provideServiceFor: provideServiceFor,
+    // provideServiceFor: provideServiceFor,
     pricePerHour: pricePerHour,
-    supportServices: supportServices,
+    // supportServices: supportServices,
   };
 
   BabysitterServices.create(newBabysitterService)
@@ -78,7 +78,7 @@ router.get("/babysitterServices/:babysitterServiceId", (req, res, next) => {
 });
 
 // PUT /api/update/:babysitterServiceId  -  Updates a specific babysitter by id
-router.put("/babysitterServices/:babysitterServiceId", (req, res, next) => {
+router.put("/babysitterServices/edit/:babysitterServiceId", (req, res, next) => {
   const { babysitterServiceId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(babysitterServiceId)) {
